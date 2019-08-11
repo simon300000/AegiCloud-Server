@@ -7,12 +7,14 @@ Receive:
 Please only send the lines which were changed.
 
 ```json
-{
-  "uid": "xxx",
-  "data": {
-    ...
+[
+  {
+    "uid": "xxx",
+    "user": "a",
+    "data": {
+      ...
   }
-}
+]
 ```
 
 Send:
@@ -21,15 +23,25 @@ The server will only send the lines which were changed.
 
 ```json
 {
-  "uid": "xxx",
-  "data": {
-    ...
-  }
-},
-{
-  "uid": "yyy",
-  "data": {
-    ...
-  }
+  "lines": [
+    {
+      "uid": "xxx",
+      "data": {
+        ...
+      }
+    },
+    {
+      "uid": "yyy",
+      "data": {
+        ...
+      }
+    }
+  ],
+  "users": [
+    {
+      "user": "a",
+      "uid": "xxx"
+    }
+  ]
 }
 ```
