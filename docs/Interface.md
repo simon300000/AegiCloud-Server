@@ -17,6 +17,8 @@ Please only send the lines which were changed.
 ]
 ```
 
+Leave the data `null` if the user just changed the line editing.
+
 Send:
 
 The server will only send the lines which were changed.
