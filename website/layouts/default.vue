@@ -43,7 +43,6 @@
     </v-app-bar>
     <v-content>
       <v-container>
-        <nuxt />
       </v-container>
     </v-content>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
