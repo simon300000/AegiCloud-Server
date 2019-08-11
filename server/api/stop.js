@@ -1,8 +1,8 @@
 import Router from 'koa-router'
-const check = new Router()
+const stop = new Router()
 
-// /check
-check.get('/', async (ctx, next) => {
+// /stop
+stop.get('/', async (ctx, next) => {
   await next()
 
   switch (ctx.request.body.operation) {
@@ -15,4 +15,4 @@ check.get('/', async (ctx, next) => {
   }
 })
 
-export default check
+export default stop
