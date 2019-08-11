@@ -1,10 +1,15 @@
 import ws from 'ws'
+import error from 'consola'
 
 const coreInit = function() {
   const server = new ws.Server({
     host: '0.0.0.0',
     port: 2121
   })
+
+  global.data = {}
+  global.data.lines = []
+  global.data.users = []
 
   server.on('connection', (client) => {
     // Connect
@@ -14,7 +19,8 @@ const coreInit = function() {
     })
 
     client.on('error', (err) => {
-      // Error
+      error('Err')
+      console.log(err)
     })
 
     client.on('message', (data) => {
@@ -23,7 +29,8 @@ const coreInit = function() {
   })
 
   server.on('error', (err) => {
-    // Error
+    error('Err')
+    console.log(err)
   })
 
   server.on('headers', (data) => {
