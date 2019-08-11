@@ -8,8 +8,8 @@ Please only send the lines which were changed.
 
 ```json
 {
-  uid: 'xxx',
-  data: {
+  "uid": "xxx",
+  "data": {
     ...
   }
 }
@@ -21,14 +21,14 @@ The server will only send the lines which were changed.
 
 ```json
 {
-  uid: 'xxx',
-  data: {
+  "uid": "xxx",
+  "data": {
     ...
   }
 },
 {
-  uid: 'yyy',
-  data: {
+  "uid": "yyy",
+  "data": {
     ...
   }
 }
