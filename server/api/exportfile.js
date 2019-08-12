@@ -4,9 +4,9 @@ import coreexportfile from '../core/export'
 const exportfile = new Router()
 
 // /exportfile
-exportfile.get('/', async (ctx, next) => {
+exportfile.post('/', async (ctx, next) => {
   if (!ctx.isLogin) {
-    ctx.response.status = -100
+    ctx.response.status = 403
     await next()
     return
   }
@@ -24,12 +24,12 @@ exportfile.get('/', async (ctx, next) => {
       ctx.response.headers['Content-Length'] = size
       f.pipe(ctx.response)
     } catch (error) {
-      ctx.response.status = -101
+      ctx.response.status = 500
       ctx.response.message = error
     }
     await next()
   } else {
-    ctx.response.status = -101
+    ctx.response.status = 500
     await next()
   }
 })

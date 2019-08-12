@@ -3,16 +3,16 @@ import Router from 'koa-router'
 const check = new Router()
 
 // /check
-check.get('/', async (ctx, next) => {
+check.post('/', async (ctx, next) => {
   try {
     await fs.promises.readFile('/aegicloud/conf/user.conf')
   } catch (error) {
-    ctx.response.status = -102
+    ctx.response.status = 500
     await next()
     return
   }
   if (!ctx.isLogin) {
-    ctx.response.status = -103
+    ctx.response.status = 500
     await next()
     return
   }

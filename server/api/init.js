@@ -3,9 +3,9 @@ import coreInit from '../core/index'
 const init = new Router()
 
 // /init
-init.get('/', async (ctx, next) => {
+init.post('/', async (ctx, next) => {
   if (!ctx.isLogin) {
-    ctx.response.status = -100
+    ctx.response.status = 403
     await next()
     return
   }
@@ -20,7 +20,7 @@ init.get('/', async (ctx, next) => {
     await coreInit()
     await next()
   } else {
-    ctx.response.status = -101
+    ctx.response.status = 400
     await next()
   }
 })

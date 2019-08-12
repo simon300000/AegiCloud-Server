@@ -4,7 +4,7 @@ import Router from 'koa-router'
 const login = new Router()
 
 // /login
-login.get('/', async (ctx, next) => {
+login.post('/', async (ctx, next) => {
   if (ctx.request.body.username && ctx.request.body.password) {
     ctx.response.status = 200
     const userConf = JSON.parse(
@@ -21,7 +21,7 @@ login.get('/', async (ctx, next) => {
     }
     await next()
   } else {
-    ctx.response.status = -101
+    ctx.response.status = 400
     await next()
   }
 })

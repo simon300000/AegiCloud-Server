@@ -2,9 +2,9 @@ import Router from 'koa-router'
 const stop = new Router()
 
 // /stop
-stop.get('/', async (ctx, next) => {
+stop.post('/', async (ctx, next) => {
   if (!ctx.isLogin) {
-    ctx.response.status = -100
+    ctx.response.status = 403
     await next()
     return
   }
@@ -14,7 +14,7 @@ stop.get('/', async (ctx, next) => {
     global.liveSchedule.cancel()
     global.server = null
   } catch (error) {
-    ctx.response.status = -101
+    ctx.response.status = 500
     ctx.response.message = error
   }
   await next()
