@@ -56,7 +56,7 @@ dev = app.env !== 'production'
   })
 
   app.use(async (ctx, next) => {
-    if (ctx.request.headers.Authorization == global.token) {
+    if (ctx.request.headers.Authorization === global.token) {
       ctx.isLogin = true
     } else {
       ctx.isLogin = false
