@@ -89,3 +89,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Temp
+node_modules_temp/
