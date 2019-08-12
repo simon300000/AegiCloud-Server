@@ -12,7 +12,9 @@ export default async function() {
     const preData = JSON.parse(
       await fs.promises.readFile(
         '/aegicloud/projects/' + global.data.conf.filename,
-        'w+'
+        {
+          flag: 'r+'
+        }
       )
     )
     global.data = {

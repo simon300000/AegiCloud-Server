@@ -8,7 +8,9 @@ login.post('/', async (ctx, next) => {
   if (ctx.request.body.username && ctx.request.body.password) {
     ctx.response.status = 200
     const userConf = JSON.parse(
-      await fs.promises.readFile('/aegicloud/conf/user.conf', 'r')
+      await fs.promises.readFile('/aegicloud/conf/user.conf', {
+        flag: 'w'
+      })
     )
     if (
       ctx.request.body.username === userConf.username &&

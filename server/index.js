@@ -71,7 +71,10 @@ const dev = app.env !== 'production'
       if (global.data.lines && global.data.users && global.data.conf.filename)
         await fs.promises.writeFile(
           '/aegicloud/projects/' + global.data.conf.filename,
-          JSON.stringify(global.data)
+          JSON.stringify(global.data),
+          {
+            flag: 'w'
+          }
         )
     } catch (e) {}
   })
