@@ -3,6 +3,7 @@ WORKDIR /app
 COPY . /app
 RUN npm i
 RUN npm run build
+RUN npm audit fix
 RUN mkdir -p /aegicloud/projects
 RUN mkdir -p /aegicloud/conf
 RUN mkdir -p /aegicloud/temp
