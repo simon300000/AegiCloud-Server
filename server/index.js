@@ -54,16 +54,29 @@ dev = app.env !== 'production'
       module.allowedMethods()
     )
   })
+
+  app.use(async (ctx, next) => {
+    if (ctx.request.headers.Authorization == global.token) {
+      ctx.isLogin = true
+    } else {
+      ctx.isLogin = false
+    }
+    await next()
+  })
+
   app.use(router.routes())
 
   schedule.scheduleJob('1 * * * * *', async () => {
-    if (global.data.lines && global.data.users)
-      await fs.promises.writeFile('/files.txt', JSON.stringify(global.data))
+    if (global.data.lines && global.data.users && global.data.conf.filename)
+      await fs.promises.writeFile(
+        '/aegicloud/projects/' + global.data.conf.filename,
+        JSON.stringify(global.data)
+      )
   })
 
   app.listen(port, host)
   ready({
-    message: `AegiCloud listening on http://${host}:${port}`,
+    message: `AegiCloud Server listening on http://${host}:${port}`,
     badge: true
   })
 })()

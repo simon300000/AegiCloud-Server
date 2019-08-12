@@ -1,17 +1,27 @@
+import fs from 'fs'
 import ws from 'ws'
 import error from 'consola'
 
-const coreInit = function() {
-  const server = new ws.Server({
+export default async function() {
+  global.server = new ws.Server({
     host: '0.0.0.0',
     port: 2121
   })
 
-  global.data = {}
-  global.data.lines = []
-  global.data.users = []
+  try {
+    global.data = JSON.parse(
+      await fs.promises.readFile(
+        '/aegicloud/projects/' + global.data.conf.filename,
+        'w+'
+      )
+    )
+  } catch (error) {
+    global.data = {}
+    global.data.lines = []
+    global.data.users = []
+  }
 
-  server.on('connection', (client) => {
+  global.server.on('connection', (client) => {
     // Connect
 
     client.on('close', () => {
@@ -28,14 +38,12 @@ const coreInit = function() {
     })
   })
 
-  server.on('error', (err) => {
+  global.server.on('error', (err) => {
     error('Err')
     console.log(err)
   })
 
-  server.on('headers', (data) => {
+  global.server.on('headers', (data) => {
     // Return
   })
 }
-
-module.exports(coreInit)
