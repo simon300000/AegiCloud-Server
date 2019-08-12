@@ -12,7 +12,7 @@ check.get('/', async (ctx, next) => {
     return
   }
   if (!ctx.isLogin) {
-    ctx.response.status = -100
+    ctx.response.status = -103
     await next()
     return
   }
@@ -27,4 +27,4 @@ check.get('/', async (ctx, next) => {
   await next()
 })
 
-export default check
+module.exports = check

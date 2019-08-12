@@ -6,13 +6,13 @@ import Koa from 'koa'
 import schedule from 'node-schedule'
 import Router from 'koa-router'
 import bodyParser from 'koa-bodyparser'
-import { config, dev } from '../nuxt.config.js'
+import config from '../nuxt.config.js'
 
 const router = new Router()
 const app = new Koa()
 
 // Import and Set Nuxt.js options
-dev = app.env !== 'production'
+const dev = app.env !== 'production'
 ;(async () => {
   // Instantiate nuxt.js
   const nuxt = new Nuxt(config)
@@ -33,7 +33,7 @@ dev = app.env !== 'production'
   app.use(bodyParser())
 
   app.use(async (ctx, next) => {
-    const urlPath = new URL(ctx.request.url).pathname
+    const urlPath = ctx.request.url
     if (/^\/api\/.+/.test(urlPath.toLowerCase())) {
       await next()
     } else {
@@ -45,13 +45,13 @@ dev = app.env !== 'production'
   })
 
   // Load API Modules
-  const urls = fs.readdirSync(path.resolve(__dirname, '/api'))
+  const urls = fs.readdirSync(path.join(__dirname, '/api'))
   urls.forEach((element) => {
-    const module = require(path.resolve(__dirname, '/api/', element))
+    const mod = require(path.join(__dirname, '/api/', element))
     router.use(
       '/api/' + element.replace('.js', ''),
-      module.routes(),
-      module.allowedMethods()
+      mod.routes(),
+      mod.allowedMethods()
     )
   })
 
@@ -64,14 +64,16 @@ dev = app.env !== 'production'
     await next()
   })
 
-  app.use(router.routes())
+  app.use(router.routes()).use(router.allowedMethods())
 
   schedule.scheduleJob('*/30 * * * * *', async () => {
-    if (global.data.lines && global.data.users && global.data.conf.filename)
-      await fs.promises.writeFile(
-        '/aegicloud/projects/' + global.data.conf.filename,
-        JSON.stringify(global.data)
-      )
+    try {
+      if (global.data.lines && global.data.users && global.data.conf.filename)
+        await fs.promises.writeFile(
+          '/aegicloud/projects/' + global.data.conf.filename,
+          JSON.stringify(global.data)
+        )
+    } catch (e) {}
   })
 
   app.listen(port, host)
