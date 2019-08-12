@@ -23,6 +23,7 @@ check.get('/', async (ctx, next) => {
     ctx.response.body.isRunning = false
   }
   ctx.response.body.filename = global.data.conf.filename
+  ctx.response.body.list = await fs.promises.readdir('/aegivloud/projects/')
   await next()
 })
 

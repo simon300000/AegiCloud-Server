@@ -11,6 +11,7 @@ init.get('/', async (ctx, next) => {
   }
   if (global.server) {
     await global.server.stop()
+    global.liveSchedule.cancel()
     global.server = null
   }
   if (ctx.request.body.filename) {

@@ -66,7 +66,7 @@ dev = app.env !== 'production'
 
   app.use(router.routes())
 
-  schedule.scheduleJob('1 * * * * *', async () => {
+  schedule.scheduleJob('*/30 * * * * *', async () => {
     if (global.data.lines && global.data.users && global.data.conf.filename)
       await fs.promises.writeFile(
         '/aegicloud/projects/' + global.data.conf.filename,
