@@ -6,7 +6,7 @@ const login = new Router()
 // /login
 login.post('/', async (ctx, next) => {
   if (ctx.request.body.username && ctx.request.body.password) {
-    ctx.response.status = 200
+    ctx.response.status = 500
     try {
       const userConf = JSON.parse(
         await fs.promises.readFile('/aegicloud/conf/user.conf', {
@@ -17,8 +17,11 @@ login.post('/', async (ctx, next) => {
         ctx.request.body.username === userConf.username &&
         ctx.request.body.password === userConf.password
       ) {
+        ctx.response.status = 200
         global.token = genId()
-        global.token = ctx.headers.Authorization = global.token
+        ctx.response.set({
+          Authorization: global.token
+        })
       } else {
         ctx.response.status = 401
       }

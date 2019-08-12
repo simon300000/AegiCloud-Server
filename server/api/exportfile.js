@@ -18,10 +18,11 @@ exportfile.post('/', async (ctx, next) => {
       const size = (await fs.promises.stat(file.path)).size
       const f = fs.createReadStream(file.path)
       ctx.response.status = 200
-      ctx.response.headers['Content-Type'] = 'application/force-download'
-      ctx.response.headers['Content-Disposition'] =
-        'attachment; filename=' + file.name
-      ctx.response.headers['Content-Length'] = size
+      ctx.response.set({
+        'Content-Type': 'application/force-download',
+        'Content-Disposition': 'attachment; filename=' + file.name,
+        'Content-Length': size
+      })
       f.pipe(ctx.response)
     } catch (error) {
       ctx.response.status = 500
