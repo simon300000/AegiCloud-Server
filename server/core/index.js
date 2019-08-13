@@ -1,4 +1,5 @@
 import fs from 'fs'
+import consola from 'consola'
 import ws from 'ws'
 import schedule from 'node-schedule'
 
@@ -48,6 +49,12 @@ export default async function() {
 
   global.server.on('connection', (client) => {
     global.clients.push(client)
+
+    client.on('error', (err) => {
+      consola.error('Error from WS')
+      console.log(err)
+    })
+
     client.on('message', (data) => {
       const preData = JSON.parse(data)
       for (const d of preData) {
@@ -60,5 +67,10 @@ export default async function() {
         }
       }
     })
+  })
+
+  global.server.on('error', (err) => {
+    consola.error('Error from WS')
+    console.log(err)
   })
 }
