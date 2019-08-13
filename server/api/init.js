@@ -10,17 +10,17 @@ init.post('/', async (ctx, next) => {
     return
   }
   if (global.server) {
-    await global.server.stop()
-    global.liveSchedule.cancel()
+    try {
+      await global.server.close()
+    } catch (error) {}
+    try {
+      global.liveSchedule.cancel()
+    } catch (error) {}
     global.server = null
   }
   if (ctx.request.body.filename) {
     ctx.response.status = 200
-    global.data = {
-      conf: {
-        filename: ctx.request.body.filename
-      }
-    }
+    global.data.conf.filename = ctx.request.body.filename
     await coreInit()
     await next()
   } else {

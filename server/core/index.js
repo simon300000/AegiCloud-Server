@@ -22,10 +22,19 @@ export default async function() {
     )
     global.data = {
       lines: preData.lines.map(),
-      users: preData.users.map()
+      users: preData.users.map(),
+      conf: {
+        filename: global.data.conf.filename
+      }
     }
   } catch (error) {
-    global.data = {}
+    global.data = {
+      lines: new Map(),
+      users: new Map(),
+      conf: {
+        filename: global.data.conf.filename
+      }
+    }
     global.data.lines = new Map()
     global.data.users = new Map()
   }

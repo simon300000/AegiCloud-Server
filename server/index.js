@@ -30,6 +30,15 @@ const dev = app.env !== 'production'
     await nuxt.ready()
   }
 
+  // Struct Initialize
+  global.data = {
+    lines: new Map(),
+    users: new Map(),
+    conf: {
+      filename: ''
+    }
+  }
+
   app.use(bodyParser())
 
   app.use(async (ctx, next) => {
@@ -73,7 +82,7 @@ const dev = app.env !== 'production'
           '/aegicloud/projects/' + global.data.conf.filename,
           JSON.stringify(global.data),
           {
-            flag: 'w'
+            flag: 'w+'
           }
         )
     } catch (e) {}

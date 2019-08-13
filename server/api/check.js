@@ -6,7 +6,7 @@ const check = new Router()
 check.post('/', async (ctx, next) => {
   try {
     await fs.promises.readFile('/aegicloud/conf/user.conf', {
-      flag: 'w'
+      flag: 'r'
     })
   } catch (error) {
     ctx.response.status = 405
@@ -19,6 +19,11 @@ check.post('/', async (ctx, next) => {
     return
   }
   ctx.response.status = 200
+  ctx.response.body = {
+    isRunning: false,
+    filename: '',
+    list: []
+  }
   if (global.server) {
     ctx.response.body.isRunning = true
   } else {

@@ -10,7 +10,7 @@ install.post('/', async (ctx, next) => {
       '/aegicloud/conf/user.conf',
       JSON.stringify(ctx.request.body),
       {
-        flag: 'w'
+        flag: 'w+'
       }
     )
     await next()

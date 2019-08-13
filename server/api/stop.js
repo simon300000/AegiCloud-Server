@@ -10,8 +10,12 @@ stop.post('/', async (ctx, next) => {
   }
   ctx.response.status = 200
   try {
-    await global.server.stop()
-    global.liveSchedule.cancel()
+    try {
+      await global.server.close()
+    } catch (error) {}
+    try {
+      global.liveSchedule.cancel()
+    } catch (error) {}
     global.server = null
   } catch (error) {
     ctx.response.status = 500

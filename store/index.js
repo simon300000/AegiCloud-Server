@@ -7,15 +7,17 @@ export const state = () => ({
 })
 
 export const actions = {
-  // async nuxtServerInit({ commit }, { req, app }) {
-  //   try {
-  //     const response = await app.$axios.post('/check')
-  //     if (response.status === 405) {
-  //       commit('setInstallStatus', true)
-  //       return
-  //     }
-  //     commit('setStatus', response.body)
-  //   } catch (error) {}
+  // nuxtServerInit({ commit }, { req, app, setInterval }) {
+  //   setInterval(async () => {
+  //     try {
+  //       const response = await app.$axios.post('/api/check')
+  //       if (response.status === 405) {
+  //         commit('setInstallStatus', true)
+  //         return
+  //       }
+  //       commit('setStatus', response.body)
+  //     } catch (error) {}
+  //   }, 5000)
   // }
 }
 
