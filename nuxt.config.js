@@ -1,4 +1,5 @@
 const colors = require('vuetify/es5/util/colors').default
+// const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 
 module.exports = {
   server: {
@@ -30,7 +31,7 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [],
+  css: ['@mdi/font/css/materialdesignicons.css'],
   /*
    ** Plugins to load before mounting the App
    */
@@ -74,6 +75,9 @@ module.exports = {
           success: colors.green.accent3
         }
       }
+    },
+    icons: {
+      iconfont: 'mdi'
     }
   },
   /*
