@@ -7,7 +7,7 @@
             <v-card class="elevation-12">
               <v-toolbar color="primary" dark flat>
                 <svgicon icon-class="logo" height="50" width="110" />
-                <v-toolbar-title>AegiCloud Dashboard</v-toolbar-title>
+                <v-toolbar-title>AegiCloud Installer</v-toolbar-title>
                 <v-spacer></v-spacer>
               </v-toolbar>
               <v-card-text>
@@ -51,7 +51,7 @@ export default {
     async submit() {
       let response
       try {
-        response = await this.$axios.post('/api/login', {
+        response = await this.$axios.post('/api/install', {
           username: this.username,
           password: this.password
         })
@@ -73,9 +73,7 @@ export default {
 
       console.log(response)
 
-      this.$axios.setHeader('Authorization', response.headers.authorization)
-      this.$store.commit('setToken', response.headers.authorization)
-      this.$router.push('/')
+      this.$router.push('/login')
     }
   }
 }
