@@ -1,5 +1,6 @@
-const colors = require('vuetify/es5/util/colors').default
 // const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
+const resolve = require('path').resolve
+const colors = require('vuetify/es5/util/colors').default
 
 module.exports = {
   server: {
@@ -35,7 +36,7 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/plugins.js'],
   /*
    ** Nuxt.js dev-modules
    */
@@ -87,6 +88,19 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {}
+    extend(config, ctx) {
+      const svgRule = config.module.rules.find((rule) => rule.test.test('.svg'))
+      svgRule.exclude = [resolve(__dirname, 'assets/svg')]
+
+      // Includes /assets/svg for svg-sprite-loader
+      config.module.rules.push({
+        test: /\.svg$/,
+        include: [resolve(__dirname, 'assets/svg')],
+        loader: 'svg-sprite-loader',
+        options: {
+          symbolId: 'icon-[name]'
+        }
+      })
+    }
   }
 }
