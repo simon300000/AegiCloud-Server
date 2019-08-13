@@ -8,6 +8,8 @@ export default async function() {
     port: 2121
   })
 
+  global.clients = []
+
   try {
     const preData = JSON.parse(
       await fs.promises.readFile(
@@ -30,18 +32,22 @@ export default async function() {
   global.lineChanged = []
   global.userChanged = []
 
-  global.liveSchedule = schedule.scheduleJob('*/3 * * * * *', async () => {
-    await global.server.send(
-      JSON.stringify({
-        lines: global.lineChanged,
-        users: global.userChanged
-      })
-    )
+  global.liveSchedule = schedule.scheduleJob('*/3 * * * * *', () => {
+    if (global.lineChanged === [] && global.userChanged === []) return
+    for (const cli of global.clients) {
+      cli.send(
+        JSON.stringify({
+          lines: global.lineChanged,
+          users: global.userChanged
+        })
+      )
+    }
     global.lineChanged = []
     global.userChanged = []
   })
 
   global.server.on('connection', (client) => {
+    global.clients.push(client)
     client.on('message', (data) => {
       const preData = JSON.parse(data)
       for (const d of preData) {

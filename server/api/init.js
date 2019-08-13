@@ -16,7 +16,11 @@ init.post('/', async (ctx, next) => {
   }
   if (ctx.request.body.filename) {
     ctx.response.status = 200
-    global.data.conf.filename = ctx.request.body.filename
+    global.data = {
+      conf: {
+        filename: ctx.request.body.filename
+      }
+    }
     await coreInit()
     await next()
   } else {
