@@ -1,6 +1,6 @@
 {
   "name": "aegicloud-server",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Backend for AegiCloud. ",
   "author": "Il Harper",
   "private": true,
