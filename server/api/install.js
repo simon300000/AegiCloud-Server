@@ -1,5 +1,5 @@
-import fs from 'fs'
-import Router from 'koa-router'
+const fs = require('fs')
+const Router = require('koa-router')
 const install = new Router()
 
 // /install

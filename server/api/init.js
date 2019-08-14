@@ -1,5 +1,5 @@
-import Router from 'koa-router'
-import coreInit from '../core/index'
+const Router = require('koa-router')
+const coreInit = require('../core/index')
 const init = new Router()
 
 // /init

@@ -1,6 +1,6 @@
-import fs from 'fs'
-import genId from 'uuid/v4'
-import Router from 'koa-router'
+const fs = require('fs')
+const genId = require('uuid/v4')
+const Router = require('koa-router')
 const login = new Router()
 
 // /login

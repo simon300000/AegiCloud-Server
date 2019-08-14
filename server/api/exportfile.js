@@ -1,6 +1,6 @@
-import fs from 'fs'
-import Router from 'koa-router'
-import coreexportfile from '../core/export'
+const fs = require('fs')
+const Router = require('koa-router')
+const coreexportfile = require('../core/export')
 const exportfile = new Router()
 
 // /exportfile

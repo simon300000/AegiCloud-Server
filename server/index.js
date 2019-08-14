@@ -1,12 +1,12 @@
-import fs from 'fs'
-import path from 'path'
-import { Nuxt, Builder } from 'nuxt'
-import { ready } from 'consola'
-import Koa from 'koa'
-import schedule from 'node-schedule'
-import Router from 'koa-router'
-import bodyParser from 'koa-bodyparser'
-import config from '../nuxt.config.js'
+const fs = require('fs')
+const path = require('path')
+const { Nuxt, Builder } = require('nuxt')
+const { ready } = require('consola')
+const Koa = require('koa')
+const schedule = require('node-schedule')
+const Router = require('koa-router')
+const bodyParser = require('koa-bodyparser')
+const config = require('../nuxt.config.js')
 
 const router = new Router()
 const app = new Koa()

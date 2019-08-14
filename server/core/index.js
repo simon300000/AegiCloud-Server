@@ -1,9 +1,9 @@
-import fs from 'fs'
-import consola from 'consola'
-import ws from 'ws'
-import schedule from 'node-schedule'
+const fs = require('fs')
+const consola = require('consola')
+const ws = require('ws')
+const schedule = require('node-schedule')
 
-export default async function() {
+module.exports = async function() {
   global.server = new ws.Server({
     host: '0.0.0.0',
     port: 2121
