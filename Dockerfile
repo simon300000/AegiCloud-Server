@@ -16,11 +16,10 @@ COPY --from=build /app/nuxt.config.js /app/nuxt.config.js
 COPY --from=build /app/package.json /app/package.json
 COPY --from=build /app/package-lock.json /app/package-lock.json
 RUN npm i --production
-RUN npm i -g pm2
 RUN npm audit fix
 RUN mkdir -p /aegicloud/projects
 RUN mkdir -p /aegicloud/conf
 RUN mkdir -p /aegicloud/temp
 VOLUME /aegicloud/projects
 EXPOSE 2120 2121
-ENTRYPOINT pm2 start ecosystem.config.js
+ENTRYPOINT npm run start
