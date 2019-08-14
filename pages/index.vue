@@ -33,31 +33,23 @@
         <v-row align="center" justify="center">
           <v-col cols="7">
             <v-card>
-              <v-card-title>Recent Projects</v-card-title>
-              <v-simple-table>
-                <thead>
-                  <tr>
-                    <th class="text-left">File Name</th>
-                    <th class="text-right">Open</th>
-                    <th class="text-right">Export</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="item in $store.state.filelist" :key="item">
-                    <td>{{ item }}</td>
-                    <td>
-                      <v-btn fab dark small color="teal">
-                        <v-icon dark>mdi-upload</v-icon>
-                      </v-btn>
-                    </td>
-                    <td>
-                      <v-btn fab dark small color="purple">
-                        <v-icon dark>mdi-export</v-icon>
-                      </v-btn>
-                    </td>
-                  </tr>
-                </tbody>
-              </v-simple-table>
+              <v-data-table
+                :headers="[
+                  { text: 'File Name', value: 'name' },
+                  { text: 'Actions', value: 'action', sortable: false }
+                ]"
+                :items="$store.state.filelist"
+              >
+                <template v-slot:item.name="{ item }">
+                  <v-label dark>{{ item }}</v-label>
+                </template>
+                <template v-slot:item.action="{ item }">
+                  <v-icon small class="mr-2" @click="fname = item"
+                    >mdi-upload</v-icon
+                  >
+                  <v-icon small @click="exportStart(item)">mdi-export</v-icon>
+                </template>
+              </v-data-table>
             </v-card>
           </v-col>
         </v-row>
@@ -113,6 +105,15 @@ export default {
     async serverStop() {
       try {
         await this.$axios.post('/api/stop')
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    async exportStart(item) {
+      try {
+        await this.$axios.post('/api/exportfile', {
+          filename: item
+        })
       } catch (error) {
         console.log(error)
       }
