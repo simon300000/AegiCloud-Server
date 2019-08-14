@@ -16,6 +16,7 @@ COPY --from=build /app/nuxt.config.js /app/nuxt.config.js
 COPY --from=build /app/package.json /app/package.json
 COPY --from=build /app/package-lock.json /app/package-lock.json
 RUN npm i --production
+RUN npm i -g pm2
 RUN npm audit fix
 RUN mkdir -p /aegicloud/projects
 RUN mkdir -p /aegicloud/conf
