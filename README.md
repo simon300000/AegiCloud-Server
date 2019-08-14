@@ -12,7 +12,7 @@ Run using:
 
 Internal build using:
 
-`docker run -t afanyiyu/aegicloud github.com/afanyiyu/aegicloud-server`
+`docker build -t afanyiyu/aegicloud github.com/afanyiyu/aegicloud-server`
 
 Replace the server url above with the IP address of your server which you want to deploy AegiCloud.
 
