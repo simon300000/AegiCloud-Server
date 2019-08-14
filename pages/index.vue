@@ -74,8 +74,17 @@ export default {
     if (!this.$store.state.token || this.$store.state.token === '')
       this.$router.push('/login')
   },
-  mounted() {
-    this.timer = setInterval(async () => {
+  async mounted() {
+    await this.Check()
+    this.timer = setInterval(this.Check, 5000)
+  },
+  beforeDestroy() {
+    if (this.timer) {
+      clearInterval(this.timer)
+    }
+  },
+  methods: {
+    async Check() {
       try {
         const response = await this.$axios.post('/api/check')
         if (response.status === 405) {
@@ -84,14 +93,7 @@ export default {
         }
         this.$store.commit('setStatus', response.data)
       } catch (error) {}
-    }, 5000)
-  },
-  beforeDestroy() {
-    if (this.timer) {
-      clearInterval(this.timer)
-    }
-  },
-  methods: {
+    },
     async serverStart() {
       if (!this.fname || this.fname === '') return
       try {
@@ -111,12 +113,37 @@ export default {
     },
     async exportStart(item) {
       try {
-        await this.$axios.post('/api/exportfile', {
-          filename: item
+        const res = await this.$axios({
+          method: 'post',
+          url: '/api/exportfile',
+          data: {
+            filename: item
+          },
+          responseType: 'arraybuffer'
         })
+        this.download(res, item)
+        // const blob = new Blob([res.data], { type: res.headers['content-type'] })
+        // const downUrl = URL.createObjectURL(blob)
+        // window.location.href = downUrl
       } catch (error) {
         console.log(error)
       }
+    },
+    download(res, item) {
+      if (!res.data) {
+        return
+      }
+      const url = window.URL.createObjectURL(
+        new Blob([res.data], { type: res.headers['content-type'] })
+      )
+      const link = document.createElement('a')
+      link.style.display = 'none'
+      link.href = url
+      link.setAttribute('download', item)
+      document.body.appendChild(link)
+      link.click()
+      URL.revokeObjectURL(link.href) // 释放URL 对象
+      document.body.removeChild(link)
     }
   }
 }

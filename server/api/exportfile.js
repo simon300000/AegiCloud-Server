@@ -29,10 +29,10 @@ exportfile.post('/', async (ctx, next) => {
       ctx.attachment(
         '/aegicloud/projects/' + ctx.request.body.filename.toString()
       )
-      await send(
-        ctx,
-        '/aegicloud/projects/' + ctx.request.body.filename.toString()
-      )
+      await send(ctx, ctx.request.body.filename.toString(), {
+        root: '/aegicloud/projects'
+      })
+      // ctx.response.end()
     } catch (error) {
       ctx.response.status = 500
       ctx.response.message = error
