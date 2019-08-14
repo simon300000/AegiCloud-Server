@@ -10,6 +10,10 @@ Run using:
 
 `docker run -d -p 2120:2120 -p 2121:2121 -v /aegicloud:/aegicloud/projects -e VUE_APP_API_URL=http://xxx.xxx.xxx.xxx:2120 afanyiyu/aegicloud --restart=always`
 
+Internal build using:
+
+`docker run -t afanyiyu/aegicloud github.com/afanyiyu/aegicloud-server`
+
 Replace the server url above with the IP address of your server which you want to deploy AegiCloud.
 
 ## 直接联系
