@@ -1,4 +1,4 @@
-FROM node:slim AS build
+FROM node:latest-slim AS build
 LABEL maintainer="afanyiyu@hotmail.com"
 LABEL version="0.1.0"
 WORKDIR /app
@@ -8,7 +8,7 @@ RUN npm i
 RUN npm audit fix
 RUN npm run build
 
-FROM node:slim AS prod
+FROM node:latest-slim AS final
 WORKDIR /app
 COPY --from=build /app/.nuxt /app/.nuxt
 COPY --from=build /app/server /app/server
