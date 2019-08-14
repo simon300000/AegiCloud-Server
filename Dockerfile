@@ -22,4 +22,4 @@ RUN mkdir -p /aegicloud/conf
 RUN mkdir -p /aegicloud/temp
 VOLUME /aegicloud/projects
 EXPOSE 2120 2121
-ENTRYPOINT pm2-runtime start ecosystem.config.js
+ENTRYPOINT pm2 start ecosystem.config.js
