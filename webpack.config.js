@@ -11,7 +11,14 @@ module.exports = {
     rules: [
       {
         test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: [
+          path.join(__dirname, 'node_modules'),
+          path.join(__dirname, 'bower_components')
+        ],
+        include: [
+          path.join(__dirname, 'server')
+          // path.join(__dirname, '.nuxt')
+        ],
         use: {
           loader: 'babel-loader',
           options: {
