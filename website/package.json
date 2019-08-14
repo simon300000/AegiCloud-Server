@@ -17,6 +17,7 @@
     }
   },
   "dependencies": {
+    "@mdi/font": "^4.0.96",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
