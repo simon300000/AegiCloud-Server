@@ -30,6 +30,37 @@
             </v-card>
           </v-col>
         </v-row>
+        <v-row align="center" justify="center">
+          <v-col cols="7">
+            <v-card>
+              <v-card-title>Recent Projects</v-card-title>
+              <v-simple-table>
+                <thead>
+                  <tr>
+                    <th class="text-left">File Name</th>
+                    <th class="text-right">Open</th>
+                    <th class="text-right">Export</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="item in $store.state.filelist" :key="item">
+                    <td>{{ item }}</td>
+                    <td>
+                      <v-btn fab dark small color="teal">
+                        <v-icon dark>mdi-upload</v-icon>
+                      </v-btn>
+                    </td>
+                    <td>
+                      <v-btn fab dark small color="purple">
+                        <v-icon dark>mdi-export</v-icon>
+                      </v-btn>
+                    </td>
+                  </tr>
+                </tbody>
+              </v-simple-table>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-container>
     </v-content>
 
@@ -41,6 +72,9 @@
 
 <script>
 export default {
+  head: () => ({
+    title: 'AegiCloud'
+  }),
   data: () => ({
     fname: ''
   }),
@@ -67,6 +101,7 @@ export default {
   },
   methods: {
     async serverStart() {
+      if (!this.fname || this.fname === '') return
       try {
         await this.$axios.post('/api/init', {
           filename: this.fname

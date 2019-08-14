@@ -43,6 +43,9 @@
 
 <script>
 export default {
+  head: () => ({
+    title: 'AegiCloud'
+  }),
   data: () => ({
     username: '',
     password: ''
