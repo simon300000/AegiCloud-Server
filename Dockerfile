@@ -4,7 +4,7 @@ LABEL version="0.1.0"
 WORKDIR /app
 COPY . /app
 ENV NPM_CONFIG_LOGLEVEL warn
-RUN npm install --production
+RUN npm install
 RUN npm audit fix
 RUN npm run build
 RUN mkdir -p /aegicloud/projects
