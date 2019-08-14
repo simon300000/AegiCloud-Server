@@ -8,6 +8,7 @@
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server --exec babel-node -e js",
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js --exec babel-node -e js",
+    "pack": "webpack",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore . --fix"
   },
   "lint-staged": {
@@ -56,6 +57,7 @@
     "prettier": "^1.16.4",
     "sass-loader": "^7.2.0",
     "svg-sprite-loader": "^4.1.6",
-    "webpack": "^4.39.2"
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6"
   }
 }
