@@ -89,3 +89,6 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# Website Build
+.nuxt.zip
