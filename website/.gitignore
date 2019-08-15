@@ -92,3 +92,4 @@ sw.*
 
 # Website Build
 .nuxt.zip
+dist.zip
