@@ -24,6 +24,8 @@ Il Harper | [E-Mail](mailto://afanyiyu@hotmail.com) | [QQ/1302744182](http://wpa
 
 ## 捐赠
 
+您的捐赠是对该项目及我本人的支持。
+
 ![Alipay](https://raw.githubusercontent.com/Afanyiyu/AegiCloud-Server/master/docs/pay/Alipay.jpg)
 
 ![Wechat](https://raw.githubusercontent.com/Afanyiyu/AegiCloud-Server/master/docs/pay/Wechat.png)
