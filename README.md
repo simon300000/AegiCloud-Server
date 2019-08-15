@@ -20,7 +20,7 @@ Replace the server url above with the IP address of your server which you want t
 
 如果你是字幕组的成员且所属字幕组有使用 AegiCloud 的需要，开发者可以免费提供服务。
 
-Il Harper | [E-Mail](mailto://afanyiyu@hotmail.com) | [QQ/Web](http://wpa.qq.com/msgrd?v=3&uin=1302744182&site=qq&menu=yes) | [QQ/Client](tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1302744182)
+Il Harper | [E-Mail](mailto://afanyiyu@hotmail.com) | [QQ/1302744182](http://wpa.qq.com/msgrd?v=3&uin=1302744182&site=qq&menu=yes)
 
 ## 捐赠
 
