@@ -5,6 +5,7 @@
   "author": "Il Harper",
   "private": true,
   "scripts": {
+    "dev": "nuxt",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore . --fix"
   },
