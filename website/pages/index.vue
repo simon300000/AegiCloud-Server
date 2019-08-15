@@ -71,7 +71,7 @@
               <v-btn
                 :block="$vuetify.breakpoint.xsOnly"
                 class="ma-2"
-                href="mailto://afanyiyu@hotmail.com"
+                href="mailto:afanyiyu@hotmail.com"
                 large
                 light
               >
